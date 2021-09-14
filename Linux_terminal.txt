@@ -1,0 +1,117 @@
+Linux terminal (GitBash) commands (30.08.2021)
+
+1) Посмотреть где я - pwd
+
+2) Создать папку - mkdir linux_terminal
+
+3) Зайти в папку - cd linux_terminal
+
+4) Создать 3 папки - mkdir {linux1,linux2,linux3}
+
+5) Зайти в любоую папку - cd linux1
+
+6) Создать 5 файлов (3 txt, 2 json) - touch {txt1.txt,txt2.txt,txt3.txt,json1.json,json2.json}
+
+7) Создать 3 папки - mkdir {first,second,third}
+
+8) Вывести список содержимого папки - ls
+
+9) + Открыть любой txt файл - vim txt1.txt
+
+10) + написать туда что-нибудь, любой текст - I -> Текст (Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum) -> Esc
+
+11) + сохранить и выйти - :wq!
+
+12) Выйти из папки на уровень выше - cd ..
+—
+13) переместить любые 2 файла, которые вы создали, в любую другую папку - mv linux1/{json1.json,json2.json} linux2
+
+14) скопировать любые 2 файла, которые вы создали, в любую другую папку - mv linux2/{json1.json,json2.json} linux3
+
+15) Найти файл по имени - find -name "txt1.txt"
+
+16) просмотреть содержимое в реальном времени (команда grep) изучите как она работает - 
+ - grep Lorem linux1/txt1.txt (возвращается вся строка, в которой обнаружено совпадение)
+ - grep -i lorem linux1/txt1.txt (поиск выполняется без учета регистра)
+ - grep -v Lorem linux1/txt1.txt (возвращаются вся строки, в которых НЕ обнаружено совпадение)
+ - grep -c Lorem linux1/txt1.txt (количество совпадений)
+ - grep -R Lorem linux1 (выполняет рекурсивный поиск во всех файлах, находящихся в заданной папке и в папках, вложенных в неё)
+
+17) вывести несколько первых строк из текстового файла - head linux1/txt1.txt
+
+18) вывести несколько последних строк из текстового файла - tail linux1/txt1.txt
+
+19) просмотреть содержимое длинного файла (команда less) изучите как она работает - команда less предназначена только для просмотра документов. Она не позволяет вносить в текст правки, форматировать или пересохранять его.
+ - less linux1/txt1.txt (в окне терминала открывается указанный документ)
+ - less -s linux1/txt1.txt (в окне терминала открывается указанный документ, множественные пробелы заменяются одним)
+ - less -c linux1/txt1.txt (листать текст, полностью стирая содержимое экрана (построчная прокрутка работать не будет))
+ - less -a linux1/txt1.txt (не осуществлять поиск в тексте, который в данный момент отображен на экране)
+ - less -bn linux1/txt1.txt (задать размер буфера памяти n=размер буфера)
+ - less -N linux1/txt1.txt (вывести номера строк)
+ - less -hn linux1/txt1.txt (задать максимальное количество строк для прокрутки назад n=количество строк)
+ - less -yn linux1/txt1.txt (задать максимальное количество строк для прокрутки вперед n=количество строк)
+ - less -i linux1/txt1.txt (игнорировать регистр)
+ - less -I linux1/txt1.txt (игнорировать регистр, даже если паттерн для поиска содержит заглавные буквы)
+ - less -Dxcolor linux1/txt1.txt (задать цвет отображаемого текста, color=xcolor)
+B - Binary characters
+C - Control characters
+E - Errors and informational messages
+M - Mark letters in the status column
+N - Line numbers enabled via the -N option
+P - Prompts
+R - The rscroll character
+S - Search results
+W - The highlight enabled via the -w option
+d - Bold text
+k - Blinking text
+s - Standout text
+u - Underlined text
+ - less -F linux1/txt1.txt (выйти, если содержимое файла помещается на одном экране - содержимое отобразится в терминале)
+ - less -jn linux1/txt1.txt (указать, в какой строке должна быть выведена искомая информация, n=номер строки)
+ - less -E linux1/txt1.txt (выйти, когда команда достигнет конца файла)
+ - less -e linux1/txt1.txt (выйти, когда команда достигнет конца файла дважды)
+
+Горячие клавиши при просмотре текста:
+ - h, H — справка;
+ - Space, Ctrl+V, f, Ctrl+F — прокрутить текст на один экран вперёд;
+ - Enter, Return, Ctrl+N, e, Ctrl+E, j, Ctrl+J — прокрутить текст на n строк вперед, по умолчанию n=1;
+ - y, Ctrl+Y, Ctrl+P, k, Ctrl+K — прокрутить текст на n строк назад, по умолчанию n=1;
+ - → — прокрутить текст по горизонтали в конец строки;
+ - ← — прокрутить текст по горизонтали в начало строки;
+ - Ctrl+G, :f — вывести основную информацию о файле;
+ - q, Q, :q, :Q, ZZ — выход;
+ - Ctrl+ - увеличить текст;
+ - Ctrl- - уменьшить текст.
+
+20) вывести дату и время - date
+=====================
+
+Задание *
+1) Отправить http запрос на сервер.
+http://162.55.220.72:5005/object_info_3?name=Vadim&age=32&salary=1000 - 
+
+curl "http://162.55.220.72:5005/object_info_3?name=Vadim&age=32&salary=1000"
+
+2) Написать скрипт который выполнит автоматически пункты 3, 4, 5, 6, 7, 8, 13
+
+Находясь в корневой папаке (d:/course) открыть терминал, далее прописать команды:
+1) pwd
+2) mkdir linux_terminal
+3) touch script.txt
+4) vim script.txt
+5) I ->
+   #!/bin/bash
+   command=$(
+   cd linux_terminal
+   mkdir {linux1,linux2,linux3}
+   cd linux1
+   touch {txt1.txt,txt2.txt,txt3.txt,json1.json,json2.json}
+   mkdir {first,second,third}
+   ls
+   mv {json1.json,json2.json} d:/course/linux_terminal/linux3
+)
+   echo $command
+end -> :wq! -> Enter
+6) ./script.txt
+
+=====================
