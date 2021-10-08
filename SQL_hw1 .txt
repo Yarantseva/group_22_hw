@@ -5,7 +5,7 @@ select *
 from qa_users;
 
 --2. Вывести по порядку всех студентов в таблице
-select username
+select user_id, username
 from qa_users;
 
 --3. Вывести только Id пользователей
