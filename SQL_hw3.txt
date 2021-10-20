@@ -1,6 +1,6 @@
 --SQL_hw3_Create table
 
---создаем таблицу employees_roles, прописываем ключи
+--СЃРѕР·РґР°РµРј С‚Р°Р±Р»РёС†Сѓ employees_roles, РїСЂРѕРїРёСЃС‹РІР°РµРј РєР»СЋС‡Рё
 create table employees_roles (
 	id serial,
 	id_role int not null,
@@ -11,13 +11,13 @@ create table employees_roles (
 		references employees (id)
 );
 
---создаем таблицу roles, прописываем ключи
+--СЃРѕР·РґР°РµРј С‚Р°Р±Р»РёС†Сѓ roles, РїСЂРѕРїРёСЃС‹РІР°РµРј РєР»СЋС‡Рё
 create table roles (
 	id serial primary key,
 	role_title varchar (50) not null
 );
 
---создаем таблицу roles_salary, прописываем ключи
+--СЃРѕР·РґР°РµРј С‚Р°Р±Р»РёС†Сѓ roles_salary, РїСЂРѕРїРёСЃС‹РІР°РµРј РєР»СЋС‡Рё
 create table roles_salary (
 	id serial,
 	id_role int not null,
@@ -28,19 +28,19 @@ create table roles_salary (
 		references salary (id)
 );
 
---создаем таблицу employees, прописываем ключи
+--СЃРѕР·РґР°РµРј С‚Р°Р±Р»РёС†Сѓ employees, РїСЂРѕРїРёСЃС‹РІР°РµРј РєР»СЋС‡Рё
 create table employees (
 	id serial primary key,
 	employee_name varchar (30) not null
 );
 
---создаем таблицу salary, прописываем ключи
+--СЃРѕР·РґР°РµРј С‚Р°Р±Р»РёС†Сѓ salary, РїСЂРѕРїРёСЃС‹РІР°РµРј РєР»СЋС‡Рё
 create table salary (
 	id serial primary key,
 	monthly_salary int not null
 );
 
---создаем таблицу claim, прописываем ключи
+--СЃРѕР·РґР°РµРј С‚Р°Р±Р»РёС†Сѓ claim, РїСЂРѕРїРёСЃС‹РІР°РµРј РєР»СЋС‡Рё
 create table claim (
 	id serial,
 	service_id int not null,
@@ -58,14 +58,14 @@ create table claim (
 		references employees (id)
 );
 
---создаем таблицу service, прописываем ключи
+--СЃРѕР·РґР°РµРј С‚Р°Р±Р»РёС†Сѓ service, РїСЂРѕРїРёСЃС‹РІР°РµРј РєР»СЋС‡Рё
 create table service (
 	id serial primary key,
 	service_title varchar (30) not null,
 	price int not null
 );
 
---создаем таблицу materials, прописываем ключи
+--СЃРѕР·РґР°РµРј С‚Р°Р±Р»РёС†Сѓ materials, РїСЂРѕРїРёСЃС‹РІР°РµРј РєР»СЋС‡Рё
 create table materials (
 	id serial primary key,
 	material_title varchar (30) not null,
@@ -73,59 +73,59 @@ create table materials (
 	price int not null
 );
 
---таблица employees. Заполняем данными, выводим содержимое
+--С‚Р°Р±Р»РёС†Р° employees. Р—Р°РїРѕР»РЅСЏРµРј РґР°РЅРЅС‹РјРё, РІС‹РІРѕРґРёРј СЃРѕРґРµСЂР¶РёРјРѕРµ
 insert into employees (id, employee_name) values (default, 'Ira Verbitskaya');
 select*
 from employees;
 
---таблица roles. Заполняем данными, выводим содержимое
+--С‚Р°Р±Р»РёС†Р° roles. Р—Р°РїРѕР»РЅСЏРµРј РґР°РЅРЅС‹РјРё, РІС‹РІРѕРґРёРј СЃРѕРґРµСЂР¶РёРјРѕРµ
 insert into roles (id, role_title) values (default, 'model');
 select*
 from roles;
 
---таблица employees_roles. Заполняем данными, выводим содержимое
+--С‚Р°Р±Р»РёС†Р° employees_roles. Р—Р°РїРѕР»РЅСЏРµРј РґР°РЅРЅС‹РјРё, РІС‹РІРѕРґРёРј СЃРѕРґРµСЂР¶РёРјРѕРµ
 insert into employees_roles (id, id_employee, id_role) values (default, 10, 1 );
 select*
 from employees_roles;
 
---проверяем реляцию между таблицами employees_roles - roles - employees
+--РїСЂРѕРІРµСЂСЏРµРј СЂРµР»СЏС†РёСЋ РјРµР¶РґСѓ С‚Р°Р±Р»РёС†Р°РјРё employees_roles - roles - employees
 select employee_name, role_title
 from employees_roles
 	join employees on employees_roles.id_employee = employees.id 
 	join roles on employees_roles.id_role = roles.id
 
---таблица salary. Заполняем данными, выводим содержимое
+--С‚Р°Р±Р»РёС†Р° salary. Р—Р°РїРѕР»РЅСЏРµРј РґР°РЅРЅС‹РјРё, РІС‹РІРѕРґРёРј СЃРѕРґРµСЂР¶РёРјРѕРµ
 insert into salary (id, monthly_salary) values (default, 2900);
 select*
 from salary;
 
---таблица roles_salary. Заполняем данными, выводим содержимое
+--С‚Р°Р±Р»РёС†Р° roles_salary. Р—Р°РїРѕР»РЅСЏРµРј РґР°РЅРЅС‹РјРё, РІС‹РІРѕРґРёРј СЃРѕРґРµСЂР¶РёРјРѕРµ
 insert into roles_salary (id, id_role, id_salary) values (default, 10, 10);
 select*
 from roles_salary;
 
---проверяем реляцию между таблицами roles_salary - roles - salary
+--РїСЂРѕРІРµСЂСЏРµРј СЂРµР»СЏС†РёСЋ РјРµР¶РґСѓ С‚Р°Р±Р»РёС†Р°РјРё roles_salary - roles - salary
 select role_title, monthly_salary
 from roles_salary
 	join roles on roles.id=roles_salary.id_role 
 	join salary on salary.id=roles_salary.id_salary;
 
---таблица service. Заполняем данными, выводим содержимое
+--С‚Р°Р±Р»РёС†Р° service. Р—Р°РїРѕР»РЅСЏРµРј РґР°РЅРЅС‹РјРё, РІС‹РІРѕРґРёРј СЃРѕРґРµСЂР¶РёРјРѕРµ
 insert into service (id, service_title, price) values (default, 'web site-lending page', 3000);
 select*
 from service;
 
---таблица materials. Заполняем данными, выводим содержимое
+--С‚Р°Р±Р»РёС†Р° materials. Р—Р°РїРѕР»РЅСЏРµРј РґР°РЅРЅС‹РјРё, РІС‹РІРѕРґРёРј СЃРѕРґРµСЂР¶РёРјРѕРµ
 insert into materials (id, material_title, amount, price) values (default, 'audio equipment', 4, 1800);
 select*
 from materials;
 
---таблица claim. Заполняем данными, выводим содержимое
+--С‚Р°Р±Р»РёС†Р° claim. Р—Р°РїРѕР»РЅСЏРµРј РґР°РЅРЅС‹РјРё, РІС‹РІРѕРґРёРј СЃРѕРґРµСЂР¶РёРјРѕРµ
 insert into claim (id, service_id, employee_id, material_id, claim_date, sales_manager) values (default, 2, 6, 2, '2021-07-28 00:00:00', 3);
 select *
 from claim;
 
---проверяем реляцию между таблицами claim - employees - service - materials
+--РїСЂРѕРІРµСЂСЏРµРј СЂРµР»СЏС†РёСЋ РјРµР¶РґСѓ С‚Р°Р±Р»РёС†Р°РјРё claim - employees - service - materials
 select name_1 as employee_name, service_title, material_title, claim_date, name_2 as manager
 from claim
 	join service on claim.service_id = service.id 
@@ -133,30 +133,30 @@ from claim
 	join employees as name_1 on claim.employee_id = name_1.id
 	join employees as name_2 on claim.sales_manager = name_2.id;
 
---добавляем таблицу suppliers с полями id, name
+--РґРѕР±Р°РІР»СЏРµРј С‚Р°Р±Р»РёС†Сѓ suppliers СЃ РїРѕР»СЏРјРё id, name
 create table suppliers (
 	id serial primary key,
 	name varchar (30)
 );
 
---таблица suppliers. Заполняем данными, выводим содержимое
-insert into suppliers (id, name) values (default, 'ООО Solo');
+--С‚Р°Р±Р»РёС†Р° suppliers. Р—Р°РїРѕР»РЅСЏРµРј РґР°РЅРЅС‹РјРё, РІС‹РІРѕРґРёРј СЃРѕРґРµСЂР¶РёРјРѕРµ
+insert into suppliers (id, name) values (default, 'РћРћРћ Solo');
 select *
 from suppliers;
 
---обновляем таблицу materials
+--РѕР±РЅРѕРІР»СЏРµРј С‚Р°Р±Р»РёС†Сѓ materials
 alter table materials
 add supplier_id int;
 
---прописываем ключи в таблицу materials
+--РїСЂРѕРїРёСЃС‹РІР°РµРј РєР»СЋС‡Рё РІ С‚Р°Р±Р»РёС†Сѓ materials
 alter table materials 
 add foreign key (supplier_id)
 	references suppliers (id);
 
---обновляем таблицу employees
+--РѕР±РЅРѕРІР»СЏРµРј С‚Р°Р±Р»РёС†Сѓ employees
 alter table employees
 add surname varchar (50);
 
---обновляем таблицу salary
+--РѕР±РЅРѕРІР»СЏРµРј С‚Р°Р±Р»РёС†Сѓ salary
 alter table salary
 add currency varchar (7);
