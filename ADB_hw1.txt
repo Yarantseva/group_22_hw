@@ -1,0 +1,38 @@
+ADB HW_1
+
+ 1. Отобразить подключённый девайс в консоли.
+
+Открыть терминал в дериктории platform-tools, запустить команду:
+	./adb devices
+
+ 2. Установить .apk файл приложениия todolist на телефон с компьютера через  ADB
+
+В Android Studio выбрать:
+Build - Build Bundle(s)/APK(s) - Build APK(s). 
+Начнется создание .apk файла.
+
+В терминале запустить команду: 
+	./adb install /d/course/android/Todolist.apk
+где /d/course/android/ - путь до .apk файла
+Todolist.apk - название .apk файла
+
+ 3. Вывести адрес приложения todolist в системе Android
+
+	./adb shell pm list packages | findstr todolist
+ 
+ 4. Сделать скриншот запущенного приложения todolist и сразу скопировать на компьютер в одной команде.
+
+	./adb exec-out screencap -p > /d/course/screenshot.png
+
+ 5. Вывести в консоль логи приложения todolist
+
+	./adb logcat | findstr -rnw "todolist"
+
+ 6. Скопировать логи приложения todolist на компьютер.
+
+	./adb logcat | findstr -rnw "todolist" > /d/course/android/todolist.log
+
+ 7. Удалить приложение todolist с телефона через ADB
+
+	./adb uninstall com.android.todolist
+где com.android.todolist - адрес приложения
