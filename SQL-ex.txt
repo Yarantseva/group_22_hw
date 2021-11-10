@@ -40,7 +40,104 @@ FROM pc
 WHERE cd='12x' AND price<600 OR cd='24x' AND price<600
 -
 
+Задание: 6 
+Для каждого производителя, выпускающего ПК-блокноты c объёмом жесткого диска не менее 10 Гбайт, найти скорости таких ПК-блокнотов. Вывод: производитель, скорость.
+-
+SELECT DISTINCT product.maker, laptop.speed
+FROM product INNER JOIN laptop on product.model=laptop.model
+WHERE laptop.hd>=10
+ORDER BY maker
+-
 
+Задание: 7
+Найдите номера моделей и цены всех имеющихся в продаже продуктов (любого типа) производителя B (латинская буква).
+-
+SELECT laptop.model, laptop.price
+FROM product
+JOIN laptop ON product.model = laptop.model
+WHERE maker='B'
+UNION
+SELECT pc.model, pc.price
+FROM product
+JOIN pc ON product.model = pc.model
+WHERE maker='B'
+UNION
+SELECT printer.model, printer.price
+FROM product
+JOIN printer ON product.model = printer.model
+WHERE maker='B'
+-
+
+Задание: 8 
+Найдите производителя, выпускающего ПК, но не ПК-блокноты.
+-
+SELECT maker
+FROM product
+WHERE type='pc'
+EXCEPT
+SELECT maker
+FROM product
+WHERE type='laptop'
+-
+
+Задание: 9 
+Найдите производителей ПК с процессором не менее 450 Мгц. Вывести: Maker
+-
+SELECT distinct maker
+FROM product
+JOIN pc ON product.model=pc.model
+WHERE speed>=450
+-
+
+Задание: 10
+Найдите модели принтеров, имеющих самую высокую цену. Вывести: model, price
+-
+SELECT model, price
+FROM printer
+WHERE price = (SELECT MAX(price) FROM printer)
+-
+
+Задание: 11 
+Найдите среднюю скорость ПК.
+-
+SELECT AVG(speed) AS speed
+FROM pc
+-
+
+Задание: 12 
+Найдите среднюю скорость ПК-блокнотов, цена которых превышает 1000 дол.
+-
+SELECT AVG(speed) AS speed
+FROM laptop
+WHERE price>1000
+-
+
+Задание: 13
+Найдите среднюю скорость ПК, выпущенных производителем A.
+-
+SELECT AVG(speed) AS speed
+FROM pc
+JOIN product ON pc.model=product.model
+WHERE maker='A'
+-
+
+Задание: 14
+Найдите класс, имя и страну для кораблей из таблицы Ships, имеющих не менее 10 орудий.
+-
+SELECT ships.class, name, country
+FROM Ships
+JOIN Classes ON ships.class=classes.class
+WHERE numGuns>=10
+-
+
+Задание: 15
+Найдите размеры жестких дисков, совпадающих у двух и более PC. Вывести: HD
+-
+SELECT hd
+FROM pc
+GROUP BY hd
+HAVING COUNT (hd)>1
+-
 
 
 
